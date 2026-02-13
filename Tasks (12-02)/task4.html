@@ -1,0 +1,67 @@
+<script>
+  let name = prompt("Enter your name:");
+  let age = prompt("Enter your age:");
+  let n = prompt("Enter number of grades:");
+  console.log(n);
+  let grades = [];
+  if (n >= 3 && n < 100 && !isNaN(n)) {
+    for (let i = 0; i < n; i++) {
+      let degrees = prompt("Enter your degrees");
+
+      if (!isNaN(degrees) && degrees >= 0 && degrees <= 100) {
+        grades.push(degrees);
+      }
+    }
+  } else {
+    alert("Error Message");
+  }
+  let obj = { name, age, grades };
+  let sum = 0;
+  let highest = grades[0];
+  let lowest = grades[0];
+
+  for (let i = 0; i < grades.length; i++) {
+    sum += Number(grades[i]);
+
+    if (grades[i] > highest) highest = grades[i];
+    if (grades[i] < lowest) lowest = grades[i];
+  }
+
+  let average = sum / grades.length;
+  let status =
+    average >= 90
+      ? "Excellent"
+      : average >= 80
+        ? "Very Good"
+        : average >= 70
+          ? "Good"
+          : average >= 60
+            ? "Pass"
+            : "Fail";
+
+  alert(
+    "Name: " +
+      obj.name +
+      "\n" +
+      "Age: " +
+      obj.age +
+      "\n" +
+      "Grades: " +
+      obj.grades +
+      "\n" +
+      "Average: " +
+      average +
+      "\n" +
+      "Highest: " +
+      highest +
+      "\n" +
+      "Lowest: " +
+      lowest +
+      "\n" +
+      "Status: " +
+      status,
+  );
+  alert(
+    "Do you want another one ?" + "\n" + "The total number of grades :" + n,
+  );
+</script>
