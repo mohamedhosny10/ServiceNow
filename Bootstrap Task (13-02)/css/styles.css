@@ -99,24 +99,20 @@ header {
 }
 .shop-cards .cards,
 .heroo .cards {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
   padding: 20px;
-  flex-wrap: wrap;
 }
 
 .shop-cards .card,
 .heroo .card {
   background: white;
-  width: 15em;
+  width: 100%;
   height: 15em;
   padding: 1em;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
+  margin-bottom: 20px;
 }
 .shop-cards .card:hover,
 .heroo .card:hover {
@@ -330,16 +326,12 @@ footer {
   margin: 10px 0;
 }
 .recipes-page {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
   padding: 20px;
 }
 
 .recipe-card {
   background: white;
-  width: 280px;
+  width: 100%;
   padding: 20px;
   border-radius: 12px;
   text-align: center;
@@ -350,6 +342,7 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .recipe-card:hover {
