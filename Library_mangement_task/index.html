@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+  </head>
+  <body>
+    <main>
+      <script>
+        let library = [];
+
+        function addBook(params) {
+          let bookTitle = prompt("Book title:");
+          let authorName = prompt("Author Name :");
+          let copies = Number(prompt("Number of copies:"));
+
+          let existingBook = library.find(
+            (b) => b.title.toLowerCase() === bookTitle.toLowerCase(),
+          );
+
+          if (copies > 0 && bookTitle !== "") {
+            if (existingBook) {
+              existingBook.available = existingBook.available + copies;
+              alert("Book already exists, copies increased");
+            } else {
+              let book = {
+                title: bookTitle,
+                author: authorName,
+                available: copies,
+                borrowed: 0,
+                borrowCount: 0,
+              };
+              library.push(book);
+              alert("Book added Successfully");
+            }
+          } else {
+            alert("Wrong Info");
+            return;
+          }
+        }
+        function borrowBook(params) {
+          let bookBorrowed = prompt("enter book title:");
+          let Book = library.find(
+            (b) => b.title.toLowerCase() === bookBorrowed.toLowerCase(),
+          );
+
+          if (Book) {
+            if (Book.available > 0) {
+              Book.available--;
+              Book.borrowed++;
+              Book.borrowCount++;
+              alert(`rest of copies: ${Book.available}`);
+              alert("Book borrowed successfully");
+            } else {
+              alert("No available copies");
+            }
+          } else {
+            alert("Book not found");
+          }
+        }
+        function returnBook(params) {
+          let bookReturned = prompt("enter book title to return:");
+          let book = library.find(
+            (b) => b.title.toLowerCase() === bookReturned.toLowerCase(),
+          );
+
+          if (book) {
+            if (book.borrowed > 0) {
+              book.available++;
+              book.borrowed--;
+              alert("Book returned successfully");
+              alert("available now : " + book.available);
+            } else {
+              alert("No borrowed copies to return");
+            }
+          } else {
+            alert("Book not found");
+          }
+        }
+
+        function calculateTotalBooks() {
+          let totalAvailable = 0;
+          let totalBorrowed = 0;
+
+          for (let i = 0; i < library.length; i++) {
+            totalAvailable = totalAvailable + library[i].available;
+            totalBorrowed = totalBorrowed + library[i].borrowed;
+          }
+
+          return {
+            available: totalAvailable,
+            borrowed: totalBorrowed,
+          };
+        }
+
+        function showReport(params) {
+          if (library.length === 0) {
+            alert("Library is empty");
+            return;
+          }
+
+          let report = "";
+
+          for (let i = 0; i < library.length; i++) {
+            let b = library[i];
+
+            let status = "";
+            if (b.available > 2) {
+              status = "Available";
+            } else if (b.available > 0) {
+              status = "Limited";
+            } else {
+              status = "Out of Stock";
+            }
+
+            report += "Title: " + b.title;
+            report += "Author: " + b.author;
+            report += "Available: " + b.available;
+            report += "Borrowed: " + b.borrowed;
+            report += "Borrow Count: " + b.borrowCount;
+            report += "Status: " + status;
+          }
+
+          let totals = calculateTotalBooks();
+
+          report += "Total Available Books: " + totals.available;
+          report += "Total Borrowed Books: " + totals.borrowed;
+
+          alert(report);
+        }
+        while (true) {
+          let key = parseInt(
+            prompt(
+              "choose number \n 1-add book \n 2-borrow book \n 3-return book \n 4-show report \n 5-exit",
+            ),
+          );
+
+          switch (key) {
+            case 1:
+              // prompt("Add new book:");
+              addBook();
+
+              break;
+            case 2:
+              //   prompt("Borrow book:");
+              borrowBook();
+              break;
+            case 3:
+              // prompt("Return book:");
+              returnBook();
+              break;
+            case 4:
+              // prompt("Show Report book:");
+              showReport();
+
+              break;
+            case 5:
+              // prompt("Exit book:");
+
+              break;
+
+            default:
+              alert("choose number from 1 to 5");
+              break;
+          }
+          if (key === 5) break;
+        }
+      </script>
+    </main>
+  </body>
+</html>
