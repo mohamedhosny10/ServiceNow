@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Task1</title>
+  </head>
+  <body>
+    <n>
+      <input type="text" /> <button id="btn">add</button> </n>
+      <h3>Number of elments :<span id="text-count">0</span></h3>
+      <ul id="task-list">
+      </ul>
+    </main>
+  </body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.querySelector("input");
+    const button = document.querySelector("button");
+    const ul = document.querySelector("ul");
+    button.addEventListener("click", function () {
+        // let s=document.getElementById("click",function(){
+
+        // })
+
+      const li = document.createElement("li");
+      const delBtn = document.createElement("button");
+
+      delBtn.textContent="delete";
+      li.textContent = input.value;
+      ul.appendChild(li);
+      li.appendChild(delBtn);
+      input.value = "";
+      
+      updateCount();
+      li.addEventListener("click", function () {
+          li.remove();
+          updateCount();
+      });
+    });
+});
+function updateCount() {
+    let text=document.getElementById("task-list");
+    let count = text.children.length;
+    document.getElementById("text-count").textContent=count;
+    
+}
+</script>

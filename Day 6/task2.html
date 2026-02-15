@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task2</title>
+  </head>
+  <body>
+    <main>
+      <input type="text" id="pass" />
+      <button id="btn" type="submit">Submit</button>
+    </main>
+
+    <script>
+      
+      //   function divide(a, b) {
+      //     try {
+      //       if (b == 0) {
+      //         throw new Error("No Division by 0");
+      //       }
+      //       const result =a/b;
+      //       console.log(`The result is :"  ${result}`);
+      //       return result;
+      //     } catch (error) {
+      //         console.log(`There is and error :" ${error}`)
+      //     }
+      //     finally {
+      //         console.log ("division complete")
+      //     }
+      //   }
+      //   divide(10,2);
+      //   divide(10,0);
+      //-------------------------------- task2--------------------------------
+
+        const button = document.getElementById("btn");
+        button.addEventListener("click", function () {
+          let password = document.getElementById("pass").value;
+          try {
+            if (password.length < 8) {
+              alert("Too short");
+            } else {
+              alert("okaaay");
+            }
+          } catch (error) {
+              alert("error");
+          }
+        });
+
+   
+    
+    </script>
+  </body>
+</html>

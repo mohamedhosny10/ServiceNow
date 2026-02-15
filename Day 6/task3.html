@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task3</title>
+</head>
+<body>
+    <script>
+        function secretKeeper(firstMessage) {
+        let secret = firstMessage;
+        return {
+          readMessage: function () {
+            return secret;
+          },
+          updateMessage: function (newMessage) {
+            secret=newMessage;
+          },
+        };
+      }
+      const mySecret=secretKeeper("secret awy");
+      console.log(mySecret.readMessage());
+      mySecret.updateMessage("changed secret");
+      console.log(mySecret.readMessage())
+    </script>
+    
+</body>
+</html>
