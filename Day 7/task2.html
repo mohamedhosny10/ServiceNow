@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <script>
+        fetch("https://jsonplaceholder.typicode.com/todos")
+          .then((res) => res.json())
+          .then((todos) => {
+            const completedTodo = todos.filter((todo) => todo.completed).length;
+            const longTitle = todos
+              .filter((todo) => todo.title.length > 20)
+              .map((todo) => todo.title);
+
+            const newArray = todos.map((todo) => ({
+              id: todo.id,
+              lengthOfTitle: todo.title.length,
+            }));
+            console.log(completedTodo);
+            console.log(longTitle);
+            console.log(newArray);
+          });
+      </script>
+    </main>
+  </body>
+</html>

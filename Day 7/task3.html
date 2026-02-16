@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <link rel="icon" href="assets/icons8-profile-100.png" />
+    <title>Document</title>
+    <link rel="stylesheet" href="task3.css" />
+  </head>
+  <body>
+    <main>
+      <h1 class="user-title">USER DASHBOARD</h1>
+      <label  id="addBtn" >Add User</label>
+      <table class="user-table" , border="1">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+      <h2 id="editTitle">Add/Edit Users</h2>
+      <input type="text" id="name" placeholder="Enter name" />
+      <input type="text" id="email" placeholder="Enter email" />
+      <button id="saveBtn" onclick="postUser()">Save button</button>
+      <script>
+        // ---get data
+        function loadUsers() {
+          fetch("https://jsonplaceholder.typicode.com/users")
+            .then((res) => res.json())
+            .then((data) => {
+              const table = document.getElementById("table-body");
+              
+              
+              data.forEach((user) => {
+                table.innerHTML += `
+          <tr>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>
+              <button onclick="deleteUser(${user.id})">Delete</button>
+            </td>
+          </tr>
+        `;
+              });
+            });
+        }
+        loadUsers();
+
+        // post data
+        function postUser() {
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          fetch("https://jsonplaceholder.typicode.com/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name,
+              email,
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              alert("User added!");
+              loadUsers();
+            });
+        }
+
+        //   update
+        fetch("https://jsonplaceholder.typicode.com/users/1", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: "Update Title",
+            // body: "This is updated",
+            // userId: 1,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log("the updated data :", data));
+        //   delete data
+        function deleteUser(id) {
+          fetch("https://jsonplaceholder.typicode.com/users/" + id, {
+            method: "DELETE",
+          }).then((res) => {
+            alert("User deleted");
+            loadUsers();
+          });
+        }
+      </script>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+  background-image: url(assets/SL-073119-22070-18.jpg);
+}
+.user-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-style: none;
+  color: white;
+  
+  
+}
+#addBtn {
+    
+  width: 15rem;
+  height: 3rem;
+  color: white;
+}
+#saveBtn {
+    
+  width: 10rem;
+  height: 3rem;
+  color: white;
+}
+#editTitle{
+    color: white;
+}
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  padding: 6px 10px;
+  margin: 5px;
+  border-radius: 4px;
+  border-style: none;
+  color: white;
+  background-color: #0b7e44;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #086532;
+}
