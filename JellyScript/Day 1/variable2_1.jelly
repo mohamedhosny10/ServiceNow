@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<j:jelly xmlns:j="jelly:core"
+    xmlns:g="glide">
+    <html>
+        <body>
+
+            <j:new className="java.util.Random" var="random"/>
+            <j:invoke on="${random}" method="nextInt" var="n">
+                <j:arg type="int" value="100"/>
+            </j:invoke>
+            <p>Random number between 0 and 99: ${n}</p>
+
+        
+    </body>
+</html>
+</j:jelly>

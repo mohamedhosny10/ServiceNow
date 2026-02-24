@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try</title>
+</head>
+<body>
+    <main>
+        <script>
+            let user={
+                "name":'ffff',
+                'id':222
+
+
+            };
+            localStorage.setItem("Hos",JSON.stringify(user));
+            let data =localStorage.getItem("Hos");
+            data=JSON.parse(data);
+            console.log(data)
+        </script>
+    </main>
+</body>
+</html>

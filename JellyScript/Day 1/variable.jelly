@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:jelly xmlns:j="jelly:core">
+  <html>
+    <body>
+      <j:set var="name" value="Zizo"></j:set>
+      <j:choose>
+        <j:when test="${name eq'Hosny'}">
+          <p>my name is ${name}</p>
+        </j:when>
+        <j:when test="${name == 'Messi'}">
+          <p>My name is ${name}</p>
+        </j:when>
+        <j:otherwise>
+          <p>Some Error ${name}</p>
+        </j:otherwise>
+      </j:choose>
+      
+
+    </body>
+  </html>
+</j:jelly>
