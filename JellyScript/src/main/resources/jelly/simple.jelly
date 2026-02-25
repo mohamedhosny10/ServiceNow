@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<j:jelly xmlns:j="jelly:core" xmlns:g="glide">
+    <j:new className="com.example.SimpleFunctions" var="fun"/>
+    <j:invoke on="${fun}" method="evenOrOdd" var="result">
+        <j:arg type="int" value="15"/>
+    </j:invoke>
+    ${result}
+</j:jelly>

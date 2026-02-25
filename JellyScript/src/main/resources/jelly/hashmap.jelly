@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<j:jelly xmlns:j="jelly:core"
+    xmlns:g="glide">
+    <j:new className="java.util.ArrayList" var="peopleList"/>
+    <j:new className="java.util.HashMap" var="map"/>
+
+    <j:invoke on="${map}" method="put">
+        <j:arg value="name"/>
+        <j:arg value="Hosny"/>
+
+    </j:invoke>
+    
+    <j:invoke on="${map}" method="put">
+        <j:arg value="age"/>
+        <j:arg value="20"/>
+
+    </j:invoke>
+    <j:invoke on="${map}" method="put">
+        <j:arg value="city"/>
+        <j:arg value="New York"/>
+    </j:invoke>
+    <j:invoke on="${peopleList}" method="add">
+        <j:arg value="${map}"/>
+    </j:invoke>
+    <!-- number 2 -->
+    <j:new className="java.util.HashMap" var="map2"/>
+    <j:invoke on="${map2}" method="put">
+        <j:arg value="name"/>
+        <j:arg value="Omar"/>
+
+    </j:invoke>
+    <j:invoke on="${map2}" method="put">
+        <j:arg value="age"/>
+        <j:arg value="22"/>
+
+    </j:invoke>
+    <j:invoke on="${map2}" method="put">
+        <j:arg value="city"/>
+        <j:arg value="Cairo"/>
+    </j:invoke>
+    <j:invoke on="${peopleList}" method="add">
+        <j:arg value="${map2}"/>
+    </j:invoke>
+
+    <!-- number 3 -->
+    <j:new className="java.util.HashMap" var="map3"/>
+    <j:invoke on="${map3}" method="put">
+        <j:arg value="name"/>
+        <j:arg value="Zizo"/>
+
+    </j:invoke>
+    <j:invoke on="${map3}" method="put">
+        <j:arg value="age"/>
+        <j:arg value="24"/>
+
+    </j:invoke>
+    <j:invoke on="${map3}" method="put">
+        <j:arg value="city"/>
+        <j:arg value="Paris"/>
+    </j:invoke>
+    <j:invoke on="${peopleList}" method="add">
+        <j:arg value="${map3}"/>
+    </j:invoke>
+
+
+
+    <!-- Get -->
+    <j:forEach var="person" items="${peopleList}">
+
+        <j:invoke on="${person}" method="get" var="userName">
+            <j:arg value="name"/>
+
+        </j:invoke>
+        <j:invoke on="${person}" method="get" var="userAge">
+            <j:arg value="age"/>
+
+        </j:invoke>
+        <j:invoke on="${person}" method="get" var="userCity">
+            <j:arg value="city"/>
+
+        </j:invoke>
+            Name: ${userName}
+            Age: ${userAge}
+            City: ${userCity}
+    </j:forEach>
+    
+</j:jelly>
