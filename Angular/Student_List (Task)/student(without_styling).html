@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="myStudent" ng-controller="studentCtrl">
+      <input
+        ng-model="studentName"
+        type="text"
+        placeholder="Enter Student Name"
+      />
+      <button ng-click="addStudent()" ng-disabled="!studentName">
+        Add Student
+      </button>
+      <p ng-if="students.length===0">No Students Added !!</p>
+
+      <ul>
+        <li ng-repeat="student in students track by $index">
+          {{student}}
+
+          <button ng-click="deleteStudent($index)">Delete</button>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      var app = angular.module("myStudent", []);
+      app.controller("studentCtrl", function ($scope) {
+        $scope.students = [];
+        $scope.addStudent = function () {
+          if ($scope.studentName) {
+            $scope.students.push($scope.studentName);
+            $scope.studentName = "";
+          }
+        };
+        $scope.deleteStudent = function (index) {
+          $scope.students.splice(index, 1);
+        };
+      });
+    </script>
+  </body>
+</html>
