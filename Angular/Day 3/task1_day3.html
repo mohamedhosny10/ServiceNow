@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" ng-app="studentApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management System</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      .controls {
+        margin-bottom: 20px;
+        display: flex;
+        gap: 10px;
+      }
+      input,
+      select {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        flex: 1;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+
+      .high-marks {
+        background-color: #d4edda;
+        color: #155724;
+        font-weight: bold;
+      }
+      .no-data {
+        text-align: center;
+        color: red;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body ng-controller="StudentController">
+    <div class="container">
+      <h2>Student List</h2>
+
+      <div class="controls">
+        <input
+          type="text"
+          ng-model="searchName"
+          placeholder="Search by name..."
+        />
+
+        <select ng-model="sortOrder">
+          <option value="">Sort By...</option>
+          <option value="name">Name (A–Z)</option>
+          <option value="-marks">Marks (High to Low)</option>
+          <option value="marks">Marks (Low to High)</option>
+        </select>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            ng-repeat="student in students | filter:{name: searchName} | orderBy:sortOrder"
+            ng-class="{'high-marks': student.marks > 80}"
+          >
+            <td>{{$index + 1}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.marks}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div
+        class="no-data"
+        ng-show="(students | filter:{name: searchName}).length === 0"
+      >
+        No students found.
+      </div>
+    </div>
+
+    <script>
+      var app = angular.module("studentApp", []);
+
+      app.controller("StudentController", function ($scope) {
+        $scope.students = [
+          { name: "Alice", marks: 92 },
+          { name: "David", marks: 29 },
+          { name: "Emma", marks: 74 },
+          { name: "John", marks: 85 },
+          { name: "Robert", marks: 38 },
+        ];
+
+        $scope.sortOrder = "";
+      });
+    </script>
+  </body>
+</html>

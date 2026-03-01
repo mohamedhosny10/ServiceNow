@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" ng-app="todoApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AngularJS Todo List Directive</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+      }
+      .container {
+        max-width: 500px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      .todo-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+      }
+      .todo-item:last-child {
+        border-bottom: none;
+      }
+      .completed {
+        text-decoration: line-through;
+        color: #888;
+      }
+      .task-text {
+        flex: 1;
+        margin-left: 10px;
+      }
+      .delete-btn {
+        color: white;
+        background-color: #ff4d4d;
+        border-radius: 3px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      .add-controls {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+      }
+      .add-controls input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .add-controls button {
+        padding: 8px 15px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .add-controls button:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body ng-controller="TodoController">
+    <div class="container">
+      <h2>My Todo List</h2>
+
+      <todo-list tasks="tasks"></todo-list>
+    </div>
+
+    <script>
+      var app = angular.module("todoApp", []);
+
+      app.controller("TodoController", function ($scope) {
+        $scope.tasks = [
+          { text: "Study AngularJS", completed: false },
+          { text: "Practice Directives", completed: false },
+          { text: "Build Mini Project", completed: false },
+        ];
+      });
+
+      app.directive("todoList", function () {
+        return {
+          scope: {
+            tasks: "=",
+          },
+          template: `
+                <div>
+                    <div ng-repeat="task in tasks" class="todo-item">
+                        <input type="checkbox" ng-model="task.completed">
+                        <span class="task-text" ng-class="{'completed': task.completed}">
+                            {{task.text}}
+                        </span>
+                        <button class="delete-btn" ng-click="deleteTask($index)">x</button>
+                    </div>
+
+                    <div class="add-controls">
+                        <input type="text" ng-model="newTaskText" placeholder="Add a new task...">
+                        <button ng-click="addTask()">Add</button>
+                    </div>
+                </div>
+            `,
+          link: function (scope) {
+            scope.addTask = function () {
+              if (scope.newTaskText) {
+                scope.tasks.push({
+                  text: scope.newTaskText,
+                  completed: false,
+                });
+                scope.newTaskText = "";
+              }
+            };
+
+            scope.deleteTask = function (index) {
+              scope.tasks.splice(index, 1);
+            };
+          },
+        };
+      });
+    </script>
+  </body>
+</html>
